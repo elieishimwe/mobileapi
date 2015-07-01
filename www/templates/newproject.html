@@ -1,0 +1,23 @@
+<ion-view title="My Reports">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon" style="color: #fff;"></button>
+
+    </ion-nav-buttons>
+
+    <ion-content class="normalPage">
+        <div class="list">
+
+            <a class="item item-avatar"  ng-repeat="report in reports" ng-click="openrepModal(report)">
+                <img ng-src=" {{report.img_url}}">
+                <h2>Case: {{report.id}}</h2>
+                <p>{{report.description}}</p>
+            </a>
+
+           
+
+        </div>
+        <H3 ng-if="!reports.length" style="color: #ebebeb;"> Loading...</H3>
+
+
+    </ion-content>
+</ion-view>

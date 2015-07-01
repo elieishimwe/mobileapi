@@ -1,0 +1,146 @@
+<div class="modal" ng-controller="LoginCtrl">
+
+    <ion-header-bar class="bar bar-header bar-stable">
+
+        <!--  <ion-header-bar class="bar-stable"> -->
+        <h1 class="title">Login</h1>
+        <!--   </ion-header-bar>   -->
+        <div class="button button-clear button-dark" ng-click="hide()">
+            <span class="icon ion-ios7-close-empty"></span>
+        </div>
+    </ion-header-bar>
+    <ion-content has-header="true" class="padding pane" style="padding-top: 70px;">
+        <!--  <img src="img/blue.png" width="50%" class="loginImg"> -->
+        <div ng-if="!normal">
+            <form class="list" ng-if="!toggleLog">
+                <div class="animate-if" ng-if="card">
+                    <p class="alert">
+                        {{message}}
+                    </p>
+                </div>
+                <div class="animate-if" ng-if="cardSuccess">
+                    <p class="success">
+                        {{message}}
+                    </p>
+                </div>
+
+                <label class="item item-input">
+                    <i class="icon ion-at placeholder-icon"></i>
+                    <input type="text" placeholder="John@Doe.com" ng-model="user.cell" required>
+                </label>
+
+                <label class="item item-input">
+                    <i class="icon ion-locked placeholder-icon"></i>
+                    <input type="password" placeholder="Password" ng-model="user.password" required>
+                </label>
+                <br/>
+                <div class="sub">
+                    <button class="button button-block button-balanced" ng-click="login()">Login</button>
+                    <br/>
+                    <div class="center">
+                        <p class="reg-text">Not a member yet?</p>
+                        <button ng-click="toggleButton()" class="button button-clear button-balanced  toggle-btn">Sign up here</button>
+                    </div>
+
+                    <br/>
+                    <div class="center">
+                        <p class="reg-text">Forgot Password?</p>
+                        <button ng-click="toggleReset()" class="button button-clear button-balanced  toggle-btn">Reset here</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+            <form class="list" ng-if="toggleLog">
+                <div class="animate-if" ng-if="cardReg">
+                    <p class="alert">
+                        {{message}}
+                    </p>
+                </div>
+
+                <label class="item item-input">
+                    <i class="icon ion-person placeholder-icon"></i>
+                    <input type="text" placeholder="John Doe" ng-model="user.name" required>
+                </label>
+
+                <label class="item item-input">
+                    <i class="icon ion-at placeholder-icon"></i>
+                    <input type="text" placeholder="john@doe.com" ng-model="user.cell" required>
+                </label>
+
+                <!--  <label class="item item-input">
+                <i class="icon ion-iphone placeholder-icon"></i>
+                <input type="text" placeholder="0792345678" ng-model="user.cell" required>
+            </label>
+ -->
+                <label class="item item-input">
+                    <i class="icon ion-locked placeholder-icon"></i>
+                    <input type="password" placeholder="Password" ng-model="user.password" required>
+                </label>
+                <br/>
+
+                <div class="sub">
+                    <button class="button button-block button-positive toggle" ng-click="register()">Register</button>
+                    <br/>
+                    <div class="center">
+                        <p class="reg-text">Already Registered?</p>
+                        <button ng-click="toggleButton()" class="button button-clear button-balanced  toggle-btn">Login here</button>
+                    </div>
+
+                    <br/>
+                    <div class="center">
+                        <p class="reg-text">Forgot Password?</p>
+                        <button ng-click="toggleReset()" class="button button-clear button-balanced  toggle-btn">Reset here</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+        <div ng-if="normal">
+            <form class="list">
+                <div class="animate-if" ng-if="card">
+                    <p class="alert">
+                        {{message}}
+                    </p>
+                </div>
+                <div class="animate-if" ng-if="cardSuccess">
+                    <p class="success">
+                        {{message}}
+                    </p>
+                </div>
+
+                <label class="item item-input">
+                    <i class="icon ion-at placeholder-icon"></i>
+                    <input type="text" placeholder="John@Doe.com" ng-model="user.cell" required>
+                </label>
+
+                <label class="item item-input">
+                    <i class="icon ion-locked placeholder-icon"></i>
+                    <input type="password" placeholder="New Password" ng-model="user.password" required>
+                </label>
+                <br/>
+                <div class="sub">
+                    <button class="button button-block button-balanced" ng-click="resetP()">Reset Password</button>
+
+                    <br/>
+                    <div class="center">
+                        <p class="reg-text">I remember my password</p>
+                        <button ng-click="toggleReset()" class="button button-clear button-balanced  toggle-btn">Go Back here</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+ <a  ui-sref="app.tc"  ng-click="hide()" style="display: block;margin-top: 100px;color: #666666;">By signing up you agree to our Terms And Conditions</a>
+
+
+    </ion-content>
+</div>
