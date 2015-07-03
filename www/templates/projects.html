@@ -47,7 +47,7 @@
                         Department
                     </div>
 
-                    <select ng-options="category as category.Department for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
+                    <select ng-options="category as category.name for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
                         <option value="?">Select A Department</option>
                     </select>
                 </label>

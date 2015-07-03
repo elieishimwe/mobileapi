@@ -33,20 +33,20 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
     $stateProvider
 
-        .state('app', {
+       /* .state('app', {
             url: "/app",
             abstract: true,
             templateUrl: "templates/menu.html",
             controller: 'AppCtrl'
-        })
+        })*/
 
-     /*   .state('app', {
+        .state('app', {
             url: "/app",
             abstract: true,
             templateUrl: "templates/login.html",
             controller: 'LoginCtrl'
         })
-*/
+
 
         .state('app.home', {
             url: "/home",

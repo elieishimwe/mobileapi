@@ -1,5 +1,5 @@
 //var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-var apiROOT = 'http://localhost/ecin/app_backend/port_backend/public/';
+var apiROOT = 'http://localhost:8000/';
 //var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
 
 
@@ -197,7 +197,7 @@ angular.module('starter.controllers', [])
     $scope.report.gps_lng = LocationService.location.longitude;
 
 
-    $http.get(apiROOT + 'categories')
+    $http.get(apiROOT + 'api/v1/categories')
         .success(function(data) {
             var obj = data;
             if (obj.error) {
@@ -234,13 +234,14 @@ angular.module('starter.controllers', [])
     $scope.update = function() {
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
+        console.log($scope.cat.selected.name);
+        console.log($scope.cat.selected.subs);
         $scope.subs = $scope.selectedCatSubs;
         $scope.Sub.selected = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
-        console.log($scope.Sub);
         $scope.report.sub_category = $scope.Sub.selected.name;
         $scope.selectedSubSubs = $scope.Sub.selected.subs;
         $scope.subsubs = $scope.selectedSubSubs;

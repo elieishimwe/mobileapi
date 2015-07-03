@@ -1,6 +1,6 @@
 //var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-var apiROOT = 'http://localhost/ecin/app_backend/port_backend/public/';
-//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
+//var apiROOT = 'http://localhost:8000/';
+var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
 
 var APIKEY;
 angular.module('starter.services', ['http-auth-interceptor'])
@@ -38,9 +38,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
-
                         APIKEY = obj.apiKey;
-                        alert(obj.apiKey);
                         $http.defaults.headers.common.Authorization = obj.apiKey; // Step 1
                         User.setDetails(obj);
                         localStorage.setItem("user_email", obj.cell_no);
@@ -88,7 +86,8 @@ angular.module('starter.services', ['http-auth-interceptor'])
             authService.loginCancelled();
         },
         register: function(user) {
-            $http.post(apiROOT + 'register', {
+
+            $http.post(apiROOT + 'api/v1/register', {
                     cell: user.cell,
                     password: user.password,
                     name: user.name,
@@ -130,7 +129,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         };
         return user;
     })
-    .factory('Categories', function($rootScope, $http) {
+    .factory('Categories', function($rootScope, $http,CSRF_TOKEN) {
         var categories = {
             getCategories: function() {
                 var cat = {};
@@ -158,9 +157,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
 .factory('Report', function($rootScope, $http, User) {
         var reports = {
             postReport: function(report) {
-
                 report.user_email = localStorage.getItem("user_email");
-
                 $http.post(apiROOT + 'report', report)
                     .success(function(data, status, headers, config) {
 

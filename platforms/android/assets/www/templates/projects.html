@@ -15,7 +15,7 @@
 
         <div class="row row-center" ng-if="!categories">
             <div class="col center">
-                <p class="info">Loading Categories</p>
+                <p class="info">Loading Departments</p>
 
             </div>
         </div>
@@ -44,18 +44,18 @@
                       <div class="list list-inset" ng-if="categories">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Main Category
+                        Department
                     </div>
 
                     <select ng-options="category as category.name for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
-                        <option value="?">Select A Category</option>
+                        <option value="?">Select A Department</option>
                     </select>
                 </label>
             </div>
             <div class="list list-inset" ng-if="subs">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Secondary Category
+                        Department Category
                     </div>
 
                     <select ng-options="sub as sub.name for sub in subs" ng-model="Sub.selected" ng-change="updateSub()">

@@ -1,8 +1,7 @@
-var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-//var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/v1/';
-//var apiROOT = 'http://console.ecin2edin.net/app_backend/v1/';
+//var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+var apiROOT = 'http://localhost:8000/';
 //var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
-//var apiROOT = 'http://localhost/ecin/app_backend/v1/';
+
 
 angular.module('starter.controllers', [])
 
@@ -235,13 +234,14 @@ angular.module('starter.controllers', [])
     $scope.update = function() {
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
+        console.log($scope.cat.selected.name);
+        console.log($scope.cat.selected.subs);
         $scope.subs = $scope.selectedCatSubs;
         $scope.Sub.selected = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
-        console.log($scope.Sub);
         $scope.report.sub_category = $scope.Sub.selected.name;
         $scope.selectedSubSubs = $scope.Sub.selected.subs;
         $scope.subsubs = $scope.selectedSubSubs;
