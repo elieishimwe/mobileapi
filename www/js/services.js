@@ -1,6 +1,6 @@
 //var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-//var apiROOT = 'http://localhost:8000/';
-var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
+var apiROOT = 'http://localhost:8000/';
+//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
 
 var APIKEY;
 angular.module('starter.services', ['http-auth-interceptor'])
@@ -26,7 +26,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
     var service = {
         login: function(user) {
             console.log('user', user);
-            $http.post(apiROOT + 'login', {
+            $http.post(apiROOT + 'api/v1/login', {
                     cell: user.cell,
                     password: user.password
                 }, {
@@ -91,7 +91,9 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     cell: user.cell,
                     password: user.password,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    ID: user.ID,
+                    firstName:user.firstName
                 }, {
                     ignoreAuthModule: true
                 })
