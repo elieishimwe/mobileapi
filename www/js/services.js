@@ -39,7 +39,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
                         APIKEY = obj.apiKey;
-                        $http.defaults.headers.common.Authorization = obj.apiKey; // Step 1
+                        $http.defaults.headers.common.api_key = obj.apiKey; // Step 1
                         User.setDetails(obj);
                         localStorage.setItem("user_email", obj.cell_no);
                         // Need to inform the http-auth-interceptor that
@@ -51,7 +51,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                             // Step 2 & 3
 
                             localStorage.setItem("key", obj.apiKey);
-                            config.headers.Authorization = obj.apiKey;
+                            config.headers.api_key = obj.apiKey;
 
                             console.log(config);
                             return config;
@@ -69,7 +69,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     ignoreAuthModule: true
                 })
                 .finally(function(data) {
-                    delete $http.defaults.headers.common.Authorization;
+                    delete $http.defaults.headers.common.api_key;
                     $rootScope.$broadcast('event:auth-logout-complete');
                 });
         },
@@ -160,7 +160,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         var reports = {
             postReport: function(report) {
                 report.user_email = localStorage.getItem("user_email");
-                $http.post(apiROOT + 'report', report)
+                $http.post(apiROOT + 'api/v1/report', report)
                     .success(function(data, status, headers, config) {
 
                         var obj = data;

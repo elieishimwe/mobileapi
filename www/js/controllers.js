@@ -449,7 +449,7 @@ angular.module('starter.controllers', [])
 .controller('NewProjectCtrl', function($scope, $http, $ionicModal) {
     $scope.reports = [];
 
-    $http.get(apiROOT + 'myreport').success(
+    $http.get(apiROOT + 'api/v1/myreport').success(
         function(data) {
 
 
