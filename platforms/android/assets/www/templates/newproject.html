@@ -9,11 +9,11 @@
 
             <a class="item item-avatar"  ng-repeat="report in reports" ng-click="openrepModal(report)">
                 <img ng-src=" {{report.img_url}}">
-                <h2>Case: {{report.id}}</h2>
-                <p>{{report.description}}</p>
+                <h2>Case: {{report.ID}}</h2>
+                <p>{{report.prop_exp}}</p>
             </a>
 
-           
+
 
         </div>
         <H3 ng-if="!reports.length" style="color: #ebebeb;"> Loading...</H3>

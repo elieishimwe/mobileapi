@@ -197,7 +197,7 @@ angular.module('starter.controllers', [])
     $scope.report.gps_lng = LocationService.location.longitude;
 
 
-    $http.get(apiROOT + 'categories')
+    $http.get(apiROOT + 'api/v1/categories')
         .success(function(data) {
             var obj = data;
             if (obj.error) {
@@ -449,7 +449,7 @@ angular.module('starter.controllers', [])
 .controller('NewProjectCtrl', function($scope, $http, $ionicModal) {
     $scope.reports = [];
 
-    $http.get(apiROOT + 'myreport').success(
+    $http.get(apiROOT + 'api/v1/myreport').success(
         function(data) {
 
 

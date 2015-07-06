@@ -187,7 +187,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 }
                 fd.append('img', img);
 
-                $http.post(apiROOT + 'reportImage', fd, {
+                $http.post(apiROOT + 'api/v1/reportImage', fd, {
                         transformRequest: angular.identity,
                         headers: {
                             'Content-Type': undefined

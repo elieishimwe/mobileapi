@@ -3,12 +3,26 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
-.run(function($ionicPlatform, $http) {
+
+var app     = angular.module('starter', ['ionic', 'starter.services', 'starter.controllers']);
+var apiRoot = 'localhost:8000/';
+var xhReq   = new XMLHttpRequest();
+xhReq.open("GET", "//" + apiRoot + "/api/csrf", false);
+xhReq.send(null);
+
+
+app.constant("CSRF_TOKEN", xhReq.responseText);
+
+app.run(function($ionicPlatform, $http,CSRF_TOKEN) {
+    //$http.defaults.headers.common['X-CSRF-TOKEN'] = CSRF_TOKEN;
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+
+
+
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
         }
@@ -23,9 +37,9 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
         $http.defaults.headers.common.Authorization = apiKey.toString();
     }
 
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
 
     // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|blob|cdvfile|content):|data:image\//);
 
@@ -33,19 +47,19 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
     $stateProvider
 
-       /* .state('app', {
+        .state('app', {
             url: "/app",
             abstract: true,
             templateUrl: "templates/menu.html",
             controller: 'AppCtrl'
-        })*/
+        })
 
-        .state('app', {
+      /*  .state('app', {
             url: "/app",
             abstract: true,
             templateUrl: "templates/login.html",
             controller: 'LoginCtrl'
-        })
+        })*/
 
 
         .state('app.home', {

@@ -26,7 +26,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
     var service = {
         login: function(user) {
             console.log('user', user);
-            $http.post(apiROOT + 'login', {
+            $http.post(apiROOT + 'api/v1/login', {
                     cell: user.cell,
                     password: user.password
                 }, {
@@ -38,10 +38,8 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
-
                         APIKEY = obj.apiKey;
-                        alert(obj.apiKey);
-                        $http.defaults.headers.common.Authorization = obj.apiKey; // Step 1
+                        $http.defaults.headers.common.api_key = obj.apiKey; // Step 1
                         User.setDetails(obj);
                         localStorage.setItem("user_email", obj.cell_no);
                         // Need to inform the http-auth-interceptor that
@@ -53,7 +51,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                             // Step 2 & 3
 
                             localStorage.setItem("key", obj.apiKey);
-                            config.headers.Authorization = obj.apiKey;
+                            config.headers.api_key = obj.apiKey;
 
                             console.log(config);
                             return config;
@@ -71,7 +69,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     ignoreAuthModule: true
                 })
                 .finally(function(data) {
-                    delete $http.defaults.headers.common.Authorization;
+                    delete $http.defaults.headers.common.api_key;
                     $rootScope.$broadcast('event:auth-logout-complete');
                 });
         },
@@ -88,11 +86,14 @@ angular.module('starter.services', ['http-auth-interceptor'])
             authService.loginCancelled();
         },
         register: function(user) {
-            $http.post(apiROOT + 'register', {
+
+            $http.post(apiROOT + 'api/v1/register', {
                     cell: user.cell,
                     password: user.password,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    ID: user.ID,
+                    firstName:user.firstName
                 }, {
                     ignoreAuthModule: true
                 })
@@ -130,7 +131,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         };
         return user;
     })
-    .factory('Categories', function($rootScope, $http) {
+    .factory('Categories', function($rootScope, $http,CSRF_TOKEN) {
         var categories = {
             getCategories: function() {
                 var cat = {};
@@ -159,7 +160,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         var reports = {
             postReport: function(report) {
                 report.user_email = localStorage.getItem("user_email");
-                $http.post(apiROOT + 'report', report)
+                $http.post(apiROOT + 'api/v1/report', report)
                     .success(function(data, status, headers, config) {
 
                         var obj = data;
