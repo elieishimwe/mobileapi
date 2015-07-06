@@ -1,6 +1,6 @@
-//var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-var apiROOT = 'http://localhost:8000/';
-//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
+var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+//var apiROOT = 'http://localhost:8000/';
+
 
 var APIKEY;
 angular.module('starter.services', ['http-auth-interceptor'])

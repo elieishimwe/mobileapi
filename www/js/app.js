@@ -5,8 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 
 
-var app     = angular.module('starter', ['ionic', 'starter.services', 'starter.controllers']);
-var apiRoot = 'localhost:8000/';
+var app       = angular.module('starter', ['ionic', 'starter.services', 'starter.controllers']);
+var apiRoot   = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public';
+//var apiRoot = 'http://localhost:8000/';
 var xhReq   = new XMLHttpRequest();
 xhReq.open("GET", "//" + apiRoot + "/api/csrf", false);
 xhReq.send(null);
