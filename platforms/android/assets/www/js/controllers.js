@@ -1,6 +1,6 @@
-//var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-var apiROOT = 'http://localhost:8000/';
-//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
+var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+//var apiROOT = 'http://localhost:8000/';
+
 
 
 angular.module('starter.controllers', [])
@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
         console.log('Link Open');
         //window.open('http://localhost/ecin/terms.html', '_system');
         window.open('http://console.ecin2edin.net/terms.html', '_system');
-        /* window.open('http://apps.donovancrewe.com/ecinwebui/terms.html', '_system');*/
+
     }
 
     $scope.safeApply = function(fn) {

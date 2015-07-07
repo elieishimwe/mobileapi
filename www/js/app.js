@@ -6,7 +6,7 @@
 
 
 var app       = angular.module('starter', ['ionic', 'starter.services', 'starter.controllers']);
-var apiRoot   = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public';
+var apiRoot   = 'siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public';
 //var apiRoot = 'http://localhost:8000/';
 var xhReq   = new XMLHttpRequest();
 xhReq.open("GET", "//" + apiRoot + "/api/csrf", false);
@@ -35,7 +35,7 @@ app.run(function($ionicPlatform, $http,CSRF_TOKEN) {
 
         var apiKey = localStorage.getItem("key");
         var user_email = localStorage.getItem("user_email");
-        $http.defaults.headers.common.Authorization = apiKey.toString();
+        $http.defaults.headers.common.api_key = apiKey.toString();
     }
 
 });
