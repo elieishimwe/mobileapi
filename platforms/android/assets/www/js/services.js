@@ -1,4 +1,5 @@
 var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
 //var apiROOT = 'http://localhost:8000/';
 
 
@@ -39,9 +40,9 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
                         APIKEY = obj.apiKey;
-                        $http.defaults.headers.common.api_key = obj.apiKey; // Step 1
+                        $http.defaults.headers.common.api_key = APIKEY; // Step 1
                         User.setDetails(obj);
-                        localStorage.setItem("user_email", obj.cell_no);
+                        localStorage.setItem("user_email", obj.Cell1);
                         // Need to inform the http-auth-interceptor that
                         // the user has logged in successfully.  To do this, we pass in a function that
                         // will configure the request headers with the authorization token so
@@ -50,8 +51,8 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         authService.loginConfirmed(data, function(config) {
                             // Step 2 & 3
 
-                            localStorage.setItem("key", obj.apiKey);
-                            config.headers.api_key = obj.apiKey;
+                            localStorage.setItem("key", APIKEY);
+                            config.headers.api_key = APIKEY;
 
                             console.log(config);
                             return config;
@@ -65,7 +66,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         },
         logout: function(user) {
 
-            $http.post(apiROOT + 'logout', {}, {
+            $http.post(apiROOT + 'api/v1/logout', {}, {
                     ignoreAuthModule: true
                 })
                 .finally(function(data) {
@@ -220,7 +221,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 options.fileKey = "img";
                 options.chunkedMode = false;
                 var headers = {
-                    'Authorization': APIKEY
+                    'api_key': APIKEY
                 };
                 options.headers = headers;
                 var params = data;

@@ -39,7 +39,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
-                        APIKEY = obj.apiKey;07
+                        APIKEY = obj.apiKey;
                         $http.defaults.headers.common.api_key = APIKEY; // Step 1
                         User.setDetails(obj);
                         localStorage.setItem("user_email", obj.Cell1);
@@ -54,7 +54,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                             localStorage.setItem("key", APIKEY);
                             config.headers.api_key = APIKEY;
 
-                            console.log(config);07
+                            console.log(config);
                             return config;
 
                         });

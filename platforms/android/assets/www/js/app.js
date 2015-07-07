@@ -35,7 +35,7 @@ app.run(function($ionicPlatform, $http,CSRF_TOKEN) {
 
         var apiKey = localStorage.getItem("key");
         var user_email = localStorage.getItem("user_email");
-        $http.defaults.headers.common.Authorization = apiKey.toString();
+        $http.defaults.headers.common.api_key = apiKey.toString();
     }
 
 });

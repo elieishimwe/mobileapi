@@ -1,6 +1,8 @@
-var apiROOT = 'http://console.ecin2edin.net/app_backend/v1/';
+var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
 //var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
-//var apiROOT = 'http://localhost:8100#/ecin/app_backend/v1/';
+//var apiROOT = 'http://localhost:8000/';
+
+
 var APIKEY;
 angular.module('starter.services', ['http-auth-interceptor'])
     .directive('fileModel', ['$parse',
@@ -25,7 +27,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
     var service = {
         login: function(user) {
             console.log('user', user);
-            $http.post(apiROOT + 'login', {
+            $http.post(apiROOT + 'api/v1/login', {
                     cell: user.cell,
                     password: user.password
                 }, {
@@ -37,11 +39,10 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
-
-                        APIKEY = obj.apiKey;
-                        $http.defaults.headers.common.Authorization = obj.apiKey; // Step 1
+                        APIKEY = obj.apiKey;07
+                        $http.defaults.headers.common.api_key = APIKEY; // Step 1
                         User.setDetails(obj);
-                        localStorage.setItem("user_email", obj.cell_no);
+                        localStorage.setItem("user_email", obj.Cell1);
                         // Need to inform the http-auth-interceptor that
                         // the user has logged in successfully.  To do this, we pass in a function that
                         // will configure the request headers with the authorization token so
@@ -50,10 +51,10 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         authService.loginConfirmed(data, function(config) {
                             // Step 2 & 3
 
-                            localStorage.setItem("key", obj.apiKey);
-                            config.headers.Authorization = obj.apiKey;
+                            localStorage.setItem("key", APIKEY);
+                            config.headers.api_key = APIKEY;
 
-                            console.log(config);
+                            console.log(config);07
                             return config;
 
                         });
@@ -65,11 +66,11 @@ angular.module('starter.services', ['http-auth-interceptor'])
         },
         logout: function(user) {
 
-            $http.post(apiROOT + 'logout', {}, {
+            $http.post(apiROOT + 'api/v1/logout', {}, {
                     ignoreAuthModule: true
                 })
                 .finally(function(data) {
-                    delete $http.defaults.headers.common.Authorization;
+                    delete $http.defaults.headers.common.api_key;
                     $rootScope.$broadcast('event:auth-logout-complete');
                 });
         },
@@ -86,16 +87,19 @@ angular.module('starter.services', ['http-auth-interceptor'])
             authService.loginCancelled();
         },
         register: function(user) {
-            $http.post(apiROOT + 'register', {
+
+            $http.post(apiROOT + 'api/v1/register', {
                     cell: user.cell,
                     password: user.password,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    ID: user.ID,
+                    firstName:user.firstName
                 }, {
                     ignoreAuthModule: true
                 })
                 .success(function(data, status, headers, config) {
-                    // var str = data.slice(1);
+                    //var str = data.slice(1);
                     var obj = data;
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-register-failed', obj.message);
@@ -128,7 +132,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         };
         return user;
     })
-    .factory('Categories', function($rootScope, $http) {
+    .factory('Categories', function($rootScope, $http,CSRF_TOKEN) {
         var categories = {
             getCategories: function() {
                 var cat = {};
@@ -156,10 +160,8 @@ angular.module('starter.services', ['http-auth-interceptor'])
 .factory('Report', function($rootScope, $http, User) {
         var reports = {
             postReport: function(report) {
-
                 report.user_email = localStorage.getItem("user_email");
-
-                $http.post(apiROOT + 'report', report)
+                $http.post(apiROOT + 'api/v1/report', report)
                     .success(function(data, status, headers, config) {
 
                         var obj = data;
@@ -186,7 +188,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 }
                 fd.append('img', img);
 
-                $http.post(apiROOT + 'reportImage', fd, {
+                $http.post(apiROOT + 'api/v1/reportImage', fd, {
                         transformRequest: angular.identity,
                         headers: {
                             'Content-Type': undefined
@@ -219,7 +221,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 options.fileKey = "img";
                 options.chunkedMode = false;
                 var headers = {
-                    'Authorization': APIKEY
+                    'api_key': APIKEY
                 };
                 options.headers = headers;
                 var params = data;

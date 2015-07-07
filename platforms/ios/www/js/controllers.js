@@ -1,6 +1,8 @@
-var apiROOT = 'http://console.ecin2edin.net/app_backend/v1/';
+var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
 //var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
-//var apiROOT = 'http://localhost:8100#/ecin/app_backend/v1/';
+//var apiROOT = 'http://localhost:8000/';
+
+
 
 angular.module('starter.controllers', [])
 
@@ -9,7 +11,7 @@ angular.module('starter.controllers', [])
         console.log('Link Open');
         //window.open('http://localhost/ecin/terms.html', '_system');
         window.open('http://console.ecin2edin.net/terms.html', '_system');
-        /* window.open('http://apps.donovancrewe.com/ecinwebui/terms.html', '_system');*/
+
     }
 
     $scope.safeApply = function(fn) {
@@ -120,10 +122,10 @@ angular.module('starter.controllers', [])
 
     $scope.$on('event:auth-loginConfirmed', function() {
         $ionicLoading.hide();
-        $scope.username = null;
-        $scope.password = null;
-        $scope.card = false;
-        $scope.cardReg = false;
+        $scope.username    = null;
+        $scope.password    = null;
+        $scope.card        = false;
+        $scope.cardReg     = false;
         $scope.cardSuccess = false;
         $scope.loginModal.hide();
     });
@@ -194,7 +196,9 @@ angular.module('starter.controllers', [])
     //$scope.img = '';
     $scope.report.gps_lat = LocationService.location.latitude;
     $scope.report.gps_lng = LocationService.location.longitude;
-    $http.get(apiROOT + 'categories')
+
+
+    $http.get(apiROOT + 'api/v1/categories')
         .success(function(data) {
             var obj = data;
             if (obj.error) {
@@ -213,7 +217,6 @@ angular.module('starter.controllers', [])
     }
 
     $scope.$on('event:categories-success', function(e, res) {
-
         $scope.categories   = res.categories;
         $scope.cat.selected = $scope.categories[0];
         $scope.update();
@@ -232,13 +235,14 @@ angular.module('starter.controllers', [])
     $scope.update = function() {
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
+        console.log($scope.cat.selected.name);
+        console.log($scope.cat.selected.subs);
         $scope.subs = $scope.selectedCatSubs;
         $scope.Sub.selected = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
-        console.log($scope.Sub);
         $scope.report.sub_category = $scope.Sub.selected.name;
         $scope.selectedSubSubs = $scope.Sub.selected.subs;
         $scope.subsubs = $scope.selectedSubSubs;
@@ -446,7 +450,7 @@ angular.module('starter.controllers', [])
 .controller('NewProjectCtrl', function($scope, $http, $ionicModal) {
     $scope.reports = [];
 
-    $http.get(apiROOT + 'myreport').success(
+    $http.get(apiROOT + 'api/v1/myreport').success(
         function(data) {
 
 
