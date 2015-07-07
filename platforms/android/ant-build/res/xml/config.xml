@@ -24,7 +24,7 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <name>ECIN2EDIN</name>
+    <name>TRANSNET</name>
     <description>
         Geolocation Based Application
     </description>
