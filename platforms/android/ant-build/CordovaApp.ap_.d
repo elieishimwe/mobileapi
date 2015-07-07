@@ -78,6 +78,7 @@
 /var/www/ecin/platforms/android/assets/www/templates/entries_voteday.csv \
 /var/www/ecin/platforms/android/assets/www/templates/projects.html \
 /var/www/ecin/platforms/android/assets/www/img/white.png \
+/var/www/ecin/platforms/android/assets/www/img/transnet.png \
 /var/www/ecin/platforms/android/assets/www/img/ionic.png \
 /var/www/ecin/platforms/android/assets/www/img/724.GIF \
 /var/www/ecin/platforms/android/assets/www/img/star.png \
