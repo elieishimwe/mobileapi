@@ -24,7 +24,7 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <name>TRANSNET</name>
+    <name>SIYALEADER WATER</name>
     <description>
         Geolocation Based Application
     </description>
