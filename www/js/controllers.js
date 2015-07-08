@@ -281,7 +281,7 @@ angular.module('starter.controllers', [])
                 };
                 reader.readAsDataURL(photo.files[0]);
             }
-            //console.log(photo.files);
+            alert(photo.files[0]);
         };
 
 
