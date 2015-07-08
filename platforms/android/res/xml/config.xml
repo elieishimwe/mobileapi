@@ -27,7 +27,7 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
-    <name>TRANSNET</name>
+    <name>SIYALEADER WATER</name>
     <description>
         Geolocation Based Application
     </description>
