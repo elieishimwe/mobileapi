@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     $scope.openTC = function  () {
         console.log('Link Open');
         //window.open('http://localhost/ecin/terms.html', '_system');
-        window.open('http://console.ecin2edin.net/terms.html', '_system');
+        window.open('', '_system');
 
     }
 
@@ -281,7 +281,7 @@ angular.module('starter.controllers', [])
                 };
                 reader.readAsDataURL(photo.files[0]);
             }
-            alert(photo.files);
+
         };
 
 
@@ -339,7 +339,7 @@ angular.module('starter.controllers', [])
 
     }
     $scope.postAReport = function(argument) {
-        //console.log('IMAGE@@@@@@ - ', $scope.img);
+        console.log('IMAGE@@@@@@ - ', $scope.img);
         if ($scope.img) {
             $scope.show();
             if ($scope.img.size) {

@@ -42,7 +42,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         APIKEY = obj.apiKey;
                         $http.defaults.headers.common.api_key = APIKEY; // Step 1
                         User.setDetails(obj);
-                        localStorage.setItem("user_email", obj.Cell1);
+                        localStorage.setItem("Cell1", obj.cell_no);
                         // Need to inform the http-auth-interceptor that
                         // the user has logged in successfully.  To do this, we pass in a function that
                         // will configure the request headers with the authorization token so
@@ -160,7 +160,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
 .factory('Report', function($rootScope, $http, User) {
         var reports = {
             postReport: function(report) {
-                report.user_email = localStorage.getItem("user_email");
+                report.Cell1 = localStorage.getItem("user_email");
                 $http.post(apiROOT + 'api/v1/report', report)
                     .success(function(data, status, headers, config) {
 
@@ -170,7 +170,6 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         } else {
                             $rootScope.$broadcast('event:report-success', obj.message);
                         }
-                        // console.log(data);
 
                     })
                     .error(function(data, status, headers, config) {
@@ -179,7 +178,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
 
             },
             postReportWithImage: function(img, data) {
-                data.user_email = localStorage.getItem("user_email");
+                data.Cell1 = localStorage.getItem("user_email");
                 var fd = new FormData();
                 for (var k in data) {
                     if (data.hasOwnProperty(k)) {
@@ -227,7 +226,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 var params = data;
                 options.params = params;
                 var ft = new FileTransfer();
-                ft.upload(myImg, encodeURI(apiROOT + 'reportImage'), onUploadSuccess, onUploadFail, options);
+                ft.upload(myImg, encodeURI(apiROOT + 'api/v1/reportImage'), onUploadSuccess, onUploadFail, options);
 
                 function onUploadSuccess(argument) {
                     var obj = argument.response;
