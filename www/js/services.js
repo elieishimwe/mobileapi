@@ -227,7 +227,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 var params = data;
                 options.params = params;
                 var ft = new FileTransfer();
-                ft.upload(myImg, encodeURI(apiROOT + 'reportImage'), onUploadSuccess, onUploadFail, options);
+                ft.upload(myImg, encodeURI(apiROOT + 'api/v1/reportImage'), onUploadSuccess, onUploadFail, options);
 
                 function onUploadSuccess(argument) {
                     var obj = argument.response;
