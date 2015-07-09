@@ -187,7 +187,9 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 }
                 fd.append('img', img);
 
-                $http.post(apiROOT + 'api/v1/reportImage', fd, {
+
+
+                $http.post(apiROOT + 'api/v1/report', fd, {
                         transformRequest: angular.identity,
                         headers: {
                             'Content-Type': undefined
@@ -200,7 +202,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         } else {
                             $rootScope.$broadcast('event:report-success', obj.message);
                         }
-                        console.log(data);
+
 
                     })
                     .error(function(data, status, headers, config) {
@@ -211,7 +213,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
             postReportWithImageCam: function(img, data) {
                 if (localStorage.getItem("key")) {
                     APIKEY = localStorage.getItem("key");
-                    // $http.defaults.headers.common.Authorization = apiKey.toString();
+
                 }
 
 
@@ -226,7 +228,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 var params = data;
                 options.params = params;
                 var ft = new FileTransfer();
-                ft.upload(myImg, encodeURI(apiROOT + 'api/v1/reportImage'), onUploadSuccess, onUploadFail, options);
+                ft.upload(myImg, encodeURI(apiROOT + 'api/v1/report'), onUploadSuccess, onUploadFail, options);
 
                 function onUploadSuccess(argument) {
                     var obj = argument.response;
