@@ -132,7 +132,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
         };
         return user;
     })
-    .factory('Categories', function($rootScope, $http,CSRF_TOKEN) {
+    .factory('Categories', function($rootScope, $http) {
         var categories = {
             getCategories: function() {
                 var cat = {};
