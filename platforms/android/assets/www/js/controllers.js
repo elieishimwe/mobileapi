@@ -193,7 +193,7 @@ angular.module('starter.controllers', [])
     $scope.success   = false;
     $scope.alertBad  = false;
     $scope.alertGood = false;
-    //$scope.img = '';
+    $scope.img       = '';
     $scope.report.gps_lat = LocationService.location.latitude;
     $scope.report.gps_lng = LocationService.location.longitude;
 
@@ -259,15 +259,17 @@ angular.module('starter.controllers', [])
     }
 
     $scope.pickPhoto = function() {
-        // var options = {
-        //     quality: 50,
-        //     width: 640,
-        //     height: 480,
-        //     destinationType: Camera.DestinationType.FILE_URI,
-        //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        //     encodingType: 0 // 0=JPG 1=PNG
-        // }
-        // navigator.camera.getPicture(onSuccess, onFail, options);
+
+        var options = {
+            quality: 50,
+            width: 640,
+            height: 480,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: 0 // 0=JPG 1=PNG
+        }
+        navigator.camera.getPicture(onSuccess, onFail, options);
+
         var photo = document.getElementById('FileInput');
         photo.click();
         photo.onchange = function(argument) {
@@ -281,19 +283,22 @@ angular.module('starter.controllers', [])
                 };
                 reader.readAsDataURL(photo.files[0]);
             }
-            alert(photo.files[0]);
+
         };
 
 
-    }
-    var onSuccess = function(FILE_URI) {
+        }
 
-        $scope.img = FILE_URI;
-        $scope.imgSrc = FILE_URI;
+
+    var onSuccess = function(FILE_URI) {
+        $scope.img         = FILE_URI;
+        $scope.imgSrc      = FILE_URI;
         $scope.showMessage = true;
+        localStorage.setItem("pic", FILE_URI);
         $scope.$apply();
     };
     var onFail = function(e) {
+
         console.log("On fail " + e);
     }
 
@@ -308,7 +313,7 @@ angular.module('starter.controllers', [])
                     maximumAge: 90000
                 };
                 navigator.geolocation.getCurrentPosition(showPosition, onError, options);
-                //navigator.geolocation.getCurrentPosition(showPosition);
+
 
             } else {
                 $scope.hide();
@@ -338,8 +343,8 @@ angular.module('starter.controllers', [])
         }
 
     }
-    $scope.postAReport = function(argument) {
-        //console.log('IMAGE@@@@@@ - ', $scope.img);
+    $scope.postAReport = function(FILE_URI) {
+        $scope.img = localStorage.getItem("pic");
         if ($scope.img) {
             $scope.show();
             if ($scope.img.size) {
