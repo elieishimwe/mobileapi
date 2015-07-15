@@ -75,7 +75,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 });
         },
         reset: function(user) {
-            return $http.post(apiROOT + 'forgot', user, {
+            return $http.post(apiROOT + 'api/v1/forgot', user, {
                 ignoreAuthModule: true
             }).then(function(argument) {
                 return argument;

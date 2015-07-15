@@ -100,4 +100,11 @@
 /var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/ecin/BuildConfig.class \
 /var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/ecin/R.class \
 /var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/ecin/R$string.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/R$drawable.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/R$attr.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/transnetApp.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/R$xml.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/BuildConfig.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/R.class \
+/var/www/ecin/platforms/android/ant-build/classes/com/siyaleader/transnet/R$string.class \
 /var/www/ecin/platforms/android/ant-build/dexedLibs/classes-3d77fd77c6abf65d701d9c0228cbd3b8.jar \

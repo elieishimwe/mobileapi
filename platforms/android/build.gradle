@@ -68,6 +68,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+     signingConfigs {
+        release {
+            storeFile file("myreleasekey.keystore")
+            storePassword "12345"
+            keyAlias "MyReleaseKey"
+            keyPassword "12345"
+        }
+    }
+
+    buildTypes {
+        release {
+
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+
 }
 
 task wrapper(type: Wrapper) {
