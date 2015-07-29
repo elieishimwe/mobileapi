@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     $scope.openTC = function  () {
         console.log('Link Open');
         //window.open('http://localhost/ecin/terms.html', '_system');
-        window.open('http://console.ecin2edin.net/terms.html', '_system');
+        window.open('', '_system');
 
     }
 
@@ -132,19 +132,19 @@ angular.module('starter.controllers', [])
 
     $scope.$on('event:auth-login-failed', function(e, status) {
         $ionicLoading.hide();
-        var error = "Invalid Username or Password.";
-        $scope.card = true;
+        var error      = "Invalid Username or Password.";
+        $scope.card    = true;
         $scope.message = error;
     });
     $scope.$on('event:auth-register-complete', function(e, status) {
         $scope.toggleButton();
-        $scope.cardReg = false;
-        $scope.card = false;
+        $scope.cardReg     = false;
+        $scope.card        = false;
         $scope.cardSuccess = true;
-        $scope.message = status;
+        $scope.message     = status;
     });
     $scope.$on('event:auth-register-failed', function(e, status) {
-        var error = status;
+        var error      = status;
         $scope.cardReg = true;
         $scope.message = error;
     });
@@ -193,7 +193,7 @@ angular.module('starter.controllers', [])
     $scope.success   = false;
     $scope.alertBad  = false;
     $scope.alertGood = false;
-    //$scope.img = '';
+    $scope.img       = '';
     $scope.report.gps_lat = LocationService.location.latitude;
     $scope.report.gps_lng = LocationService.location.longitude;
 
@@ -259,15 +259,17 @@ angular.module('starter.controllers', [])
     }
 
     $scope.pickPhoto = function() {
-        // var options = {
-        //     quality: 50,
-        //     width: 640,
-        //     height: 480,
-        //     destinationType: Camera.DestinationType.FILE_URI,
-        //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        //     encodingType: 0 // 0=JPG 1=PNG
-        // }
-        // navigator.camera.getPicture(onSuccess, onFail, options);
+
+        var options = {
+            quality: 50,
+            width: 640,
+            height: 480,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: 0 // 0=JPG 1=PNG
+        }
+        navigator.camera.getPicture(onSuccess, onFail, options);
+
         var photo = document.getElementById('FileInput');
         photo.click();
         photo.onchange = function(argument) {
@@ -281,19 +283,22 @@ angular.module('starter.controllers', [])
                 };
                 reader.readAsDataURL(photo.files[0]);
             }
-            //console.log(photo.files);
+
         };
 
 
-    }
-    var onSuccess = function(FILE_URI) {
+        }
 
-        $scope.img = FILE_URI;
-        $scope.imgSrc = FILE_URI;
+
+    var onSuccess = function(FILE_URI) {
+        $scope.img         = FILE_URI;
+        $scope.imgSrc      = FILE_URI;
         $scope.showMessage = true;
+        localStorage.setItem("pic", FILE_URI);
         $scope.$apply();
     };
     var onFail = function(e) {
+
         console.log("On fail " + e);
     }
 
@@ -308,7 +313,7 @@ angular.module('starter.controllers', [])
                     maximumAge: 90000
                 };
                 navigator.geolocation.getCurrentPosition(showPosition, onError, options);
-                //navigator.geolocation.getCurrentPosition(showPosition);
+
 
             } else {
                 $scope.hide();
@@ -338,8 +343,8 @@ angular.module('starter.controllers', [])
         }
 
     }
-    $scope.postAReport = function(argument) {
-        //console.log('IMAGE@@@@@@ - ', $scope.img);
+    $scope.postAReport = function(FILE_URI) {
+        $scope.img = localStorage.getItem("pic");
         if ($scope.img) {
             $scope.show();
             if ($scope.img.size) {

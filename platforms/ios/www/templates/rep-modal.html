@@ -1,5 +1,5 @@
   <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-stable">
+    <ion-header-bar class="bar bar-header bar-assertive">
 
         <!--  <ion-header-bar class="bar-stable"> -->
         <h1 class="title">My Report</h1>
@@ -44,7 +44,7 @@
     		 Gps Coords: {{selectedReport.gps_lat}},  {{selectedReport.gps_lng}}
 
     	</div>
-    	<img ng-if="selectedReport.img_url" ng-src="selectedReport.img_url" width="100%" height="auto"alt="">
+        <img ng-src="{{selectedReport.img_url}}" width="50%">
     </div>
 
     </ion-content>

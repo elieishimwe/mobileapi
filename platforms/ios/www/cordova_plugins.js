@@ -279,7 +279,7 @@ module.exports.metadata =
 {
     "org.apache.cordova.geolocation": "0.3.8",
     "org.apache.cordova.camera": "0.3.0",
-    "org.apache.cordova.file-transfer": "0.4.4",
+    "org.apache.cordova.file-transfer": "0.5.0",
     "com.ionic.keyboard": "0.0.1",
     "org.apache.cordova.console": "0.2.8",
     "org.apache.cordova.device": "0.2.9",

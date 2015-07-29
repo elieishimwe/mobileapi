@@ -132,19 +132,19 @@ angular.module('starter.controllers', [])
 
     $scope.$on('event:auth-login-failed', function(e, status) {
         $ionicLoading.hide();
-        var error = "Invalid Username or Password.";
-        $scope.card = true;
+        var error      = "Invalid Username or Password.";
+        $scope.card    = true;
         $scope.message = error;
     });
     $scope.$on('event:auth-register-complete', function(e, status) {
         $scope.toggleButton();
-        $scope.cardReg = false;
-        $scope.card = false;
+        $scope.cardReg     = false;
+        $scope.card        = false;
         $scope.cardSuccess = true;
-        $scope.message = status;
+        $scope.message     = status;
     });
     $scope.$on('event:auth-register-failed', function(e, status) {
-        var error = status;
+        var error      = status;
         $scope.cardReg = true;
         $scope.message = error;
     });
