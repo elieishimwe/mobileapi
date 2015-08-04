@@ -28,6 +28,7 @@ angular.module('starter.controllers', [])
     $scope.Sub = {};
     $scope.subs = [];
     $scope.subsubs = [];
+    $scope.subsubsub = [];
     $scope.report = {};
     $scope.img;
     $ionicModal.fromTemplateUrl('templates/login.html', function($ionicModal, Report) {

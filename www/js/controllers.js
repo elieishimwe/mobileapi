@@ -1,4 +1,5 @@
 var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+//var apiROOT = 'http://www.ecin2edin.net/console/app_backend/port_backend/public/'
 //var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
 //var apiROOT = 'http://localhost:8000/';
 
@@ -28,6 +29,7 @@ angular.module('starter.controllers', [])
     $scope.Sub = {};
     $scope.subs = [];
     $scope.subsubs = [];
+    $scope.subsubsub = [];
     $scope.report = {};
     $scope.img;
     $ionicModal.fromTemplateUrl('templates/login.html', function($ionicModal, Report) {
@@ -235,18 +237,29 @@ angular.module('starter.controllers', [])
     $scope.update = function() {
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
-        console.log($scope.cat.selected.name);
-        console.log($scope.cat.selected.subs);
-        $scope.subs = $scope.selectedCatSubs;
-        $scope.Sub.selected = $scope.selectedCatSubs[0];
+        $scope.subs            = $scope.selectedCatSubs;
+        $scope.subsubs         = [];
+        $scope.subsubsub       = [];
+        $scope.Sub.selected    = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
         $scope.report.sub_category = $scope.Sub.selected.name;
-        $scope.selectedSubSubs = $scope.Sub.selected.subs;
-        $scope.subsubs = $scope.selectedSubSubs;
+        $scope.selectedSubSubs     = $scope.Sub.selected.subs;
+        $scope.report.sub_category = $scope.selectedSubSubs[0];
+        $scope.subsubs             = $scope.selectedSubSubs;
+        $scope.updateSubSub();
     }
+
+    $scope.updateSubSub = function() {
+         $scope.report.sub_sub_category = $scope.report.sub_category.name;
+         $scope.selectedSubSubSub       = $scope.report.sub_category.subs;
+         $scope.report.sub_sub_category = $scope.selectedSubSubSub[0];
+         $scope.subsubsub               = $scope.selectedSubSubSub;
+    }
+
+
 
     $scope.takePhoto = function() {
         var options = {

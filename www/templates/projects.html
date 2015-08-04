@@ -41,36 +41,46 @@
 
 
         <form ng-if="!success">
-                      <div class="list list-inset" ng-if="categories">
+            <div class="list list-inset" ng-if="categories">
                 <label class="item item-input item-select">
                     <div class="input-label">
                         Department
                     </div>
 
                     <select ng-options="category as category.name for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
-                        <option value="?">Select A Department</option>
+                        <option value="?">Select Department</option>
                     </select>
                 </label>
             </div>
             <div class="list list-inset" ng-if="subs">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Department Category
+                        Category
                     </div>
 
                     <select ng-options="sub as sub.name for sub in subs" ng-model="Sub.selected" ng-change="updateSub()">
-                        <option value="?">Select A Sub Category</option>
+                        <option value="?">Select Category</option>
                         <option ng-repeat="sub in subs" value="{{sub.name}}">{{sub.name}}</option>
                     </select>
                 </label>
             </div>
-            <div class="list list-inset" ng-if="subsubs">
+            <div class="list list-inset" ng-if="subsubs && subs">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Sub Category
+                        Sub-Category
                     </div>
 
-                    <select ng-model="report.sub_sub_category" ng-options="sub as sub.name for sub in subsubs" >
+                    <select ng-model="report.sub_category" ng-options="sub as sub.name for sub in subsubs" ng-change="updateSubSub()" >
+                    </select>
+                </label>
+            </div>
+            <div class="list list-inset" ng-if="subsubsub">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Sub-sub-Category
+                    </div>
+
+                    <select ng-model="report.sub_sub_category" ng-options="sub as sub.name for sub in subsubsub" >
                     </select>
                 </label>
             </div>
@@ -80,9 +90,7 @@
                     <div class="input-label">
                         Report Description
                     </div>
-                    <!--  <i class="icon ion-person placeholder-icon"></i> -->
                     <textarea ng-model="report.description" required placeholder="Enter Your Description"></textarea>
-                    <!--  <input type="text" placeholder="John Doe" ng-model="user.name" required> -->
                 </label>
             </div>
 
