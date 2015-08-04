@@ -264,6 +264,10 @@ angular.module('starter.controllers', [])
          $scope.report.sub_Sub_category = $scope.report.sub_category.name;
     }
 
+    $scope.prior = function(selected){
+       $scope.report.priorities = selected;
+    }
+
 
 
 

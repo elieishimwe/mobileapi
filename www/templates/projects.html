@@ -77,7 +77,7 @@
             <div class="list list-inset" ng-if="subsubsub">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Sub-sub-Category
+                        Sub-Sub-Category
                     </div>
 
                     <select ng-model="report.sub_category" ng-options="sub as sub.name for sub in subsubsub" ng-change="updateSubSubSub()">
@@ -93,6 +93,20 @@
                     <textarea ng-model="report.description" required placeholder="Enter Your Description"></textarea>
                 </label>
             </div>
+
+            <div class="list list-inset">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Case Priority
+                    </div>
+
+                <select ng-options="priority for priority in ['Normal', 'Critical']" ng-model="priorityM" ng-change="prior(priorityM)">
+                    <option value="" selected>--Please select case your priority--</option>
+                </select
+                </label>
+            </div>
+
+
 
             <div class="list list-inset inb">
 
