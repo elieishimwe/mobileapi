@@ -70,7 +70,7 @@
                         Sub-Category
                     </div>
 
-                    <select ng-model="report.sub_category" ng-options="sub as sub.name for sub in subsubs" ng-change="updateSubSub()" >
+                    <select ng-model="report.category" ng-options="sub as sub.name for sub in subsubs" ng-change="updateSubSub()" >
                     </select>
                 </label>
             </div>
@@ -80,7 +80,7 @@
                         Sub-sub-Category
                     </div>
 
-                    <select ng-model="report.sub_sub_category" ng-options="sub as sub.name for sub in subsubsub" >
+                    <select ng-model="report.sub_category" ng-options="sub as sub.name for sub in subsubsub" ng-change="updateSubSubSub()">
                     </select>
                 </label>
             </div>
