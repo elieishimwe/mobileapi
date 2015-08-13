@@ -16,29 +16,36 @@
 
     	</div>
 
+
     	<div class="item item-dark">
     		 Created: {{selectedReport.submit_date}}
-
 
     	</div>
 
     	<div class="item item-dark">
     		 Category: {{selectedReport.prob_category}}
 
-
     	</div>
 
     	<div class="item item-dark">
-    		 Sub Catergory: {{selectedReport.prob_subcategory}}
-
+    		 Sub-Category: {{selectedReport.prob_subcategory}}
 
     	</div>
+
+        <div class="item item-dark">
+             Sub-Sub-Category: {{selectedReport.prop_sub_sub_category}}
+
+        </div>
 
     	<div class="item item-dark">
     		 Description: {{selectedReport.prob_exp}}
 
-
     	</div>
+
+        <div class="item item-dark">
+             Priority: {{selectedReport.prob_priority}}
+
+        </div>
 
     	<div class="item item-dark">
     		 Gps Coords: {{selectedReport.gps_lat}},  {{selectedReport.gps_lng}}
