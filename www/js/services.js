@@ -5,6 +5,7 @@ var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/po
 
 
 var APIKEY;
+var api_key;
 angular.module('starter.services', ['http-auth-interceptor'])
     .directive('fileModel', ['$parse',
         function($parse) {
@@ -41,7 +42,9 @@ angular.module('starter.services', ['http-auth-interceptor'])
                         $rootScope.$broadcast('event:auth-login-failed', status);
                     } else {
                         APIKEY = obj.apiKey;
-                        $http.defaults.headers.common.api_key = APIKEY; // Step 1
+                        api_key = obj.api_key;
+                        $http.defaults.headers.common.api_key     = APIKEY; // Step 1
+                        $http.defaults.headers.common.api_key_new = api_key;
                         User.setDetails(obj);
                         localStorage.setItem("Cell1", obj.cell_no);
                         // Need to inform the http-auth-interceptor that
@@ -53,8 +56,8 @@ angular.module('starter.services', ['http-auth-interceptor'])
                             // Step 2 & 3
 
                             localStorage.setItem("key", APIKEY);
-                            config.headers.api_key = APIKEY;
-
+                            config.headers.api_key     = APIKEY;
+                            config.headers.api_key_new = api_key;
                             console.log(config);
                             return config;
 
@@ -115,7 +118,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
 
         }
     };
-    console.log(service);
+
     return service;
 })
 
