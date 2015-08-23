@@ -41,14 +41,14 @@
 
 
         <form ng-if="!success">
-                      <div class="list list-inset" ng-if="categories">
+            <div class="list list-inset" ng-if="categories">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Main Category
+                        Category
                     </div>
 
                     <select ng-options="category as category.name for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
-                        <option value="?">Select A Category</option>
+                        <option value="?">Select Category</option>
                     </select>
                 </label>
             </div>
@@ -59,18 +59,18 @@
                     </div>
 
                     <select ng-options="sub as sub.name for sub in subs" ng-model="Sub.selected" ng-change="updateSub()">
-                        <option value="?">Select A Sub Category</option>
+                        <option value="?">Select Sub Category</option>
                         <option ng-repeat="sub in subs" value="{{sub.name}}">{{sub.name}}</option>
                     </select>
                 </label>
             </div>
-            <div class="list list-inset" ng-if="subsubs">
+            <div class="list list-inset" ng-if="subsubs && subs">
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Sub Sub Category
+                        Sub-Sub-Category
                     </div>
 
-                    <select ng-model="report.sub_sub_category" ng-options="sub as sub.name for sub in subsubs" >
+                    <select ng-model="subsub.selected" ng-options="sub as sub.name for sub in subsubs">
                     </select>
                 </label>
             </div>
@@ -80,9 +80,7 @@
                     <div class="input-label">
                         Report Description
                     </div>
-                    <!--  <i class="icon ion-person placeholder-icon"></i> -->
                     <textarea ng-model="report.description" required placeholder="Enter Your Description"></textarea>
-                    <!--  <input type="text" placeholder="John Doe" ng-model="user.name" required> -->
                 </label>
             </div>
 
@@ -98,6 +96,8 @@
                 </label>
             </div>
 
+
+
             <div class="list list-inset inb">
 
                 <div class="uplod" ng-init="showMessage = false">
@@ -107,25 +107,10 @@
 
 
 
-                    <!--    <button class="button button-block button-positive toggle" ng-click="takePhoto()"><i class="ion-camera" style="font-size: 48px;"></i>
-                    </button> -->
 
 
                     <button class="button button-block button-positive toggle btn-50" ng-click="takePhoto()" style="max-width: 100% !important;display:inline-block;"><i class="ion-camera" style="font-size: 48px;"></i>
                     </button>
-
-
-
-
-
-                   <!--  <button ng-if="!hideGal" class="button button-block button-positive toggle activated btn-50" ng-click="pickPhoto()" style="max-width: 45% !important;float: right;display: inline; margin-left: 13px;"><i class="ion-image" style="font-size: 48px;"></i>
-                    </button> -->
-
-
-
-
-
-                    <!--  <input type="text" placeholder="John Doe" ng-model="user.name" required> -->
                 </div>
                 <p class="uploadMessage" ng-if="showMessage">File Selected</p>
             </div>

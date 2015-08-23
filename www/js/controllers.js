@@ -1,8 +1,4 @@
 var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
-//var apiROOT = 'http://www.ecin2edin.net/console/app_backend/port_backend/public/'
-//var apiROOT = 'http://apps.donovancrewe.com/ecinwebui/app_backend/v1/';
-//var apiROOT = 'http://localhost:8000/';
-
 
 
 angular.module('starter.controllers', [])
@@ -10,9 +6,7 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $state, $ionicModal) {
     $scope.openTC = function  () {
         console.log('Link Open');
-        //window.open('http://localhost/ecin/terms.html', '_system');
         window.open('', '_system');
-
     }
 
     $scope.safeApply = function(fn) {
@@ -29,7 +23,6 @@ angular.module('starter.controllers', [])
     $scope.Sub = {};
     $scope.subs = [];
     $scope.subsubs = [];
-    $scope.subsubsub = [];
     $scope.report = {};
     $scope.img;
     $ionicModal.fromTemplateUrl('templates/login.html', function($ionicModal, Report) {
@@ -124,29 +117,29 @@ angular.module('starter.controllers', [])
 
     $scope.$on('event:auth-loginConfirmed', function() {
         $ionicLoading.hide();
-        $scope.username    = null;
-        $scope.password    = null;
-        $scope.card        = false;
-        $scope.cardReg     = false;
+        $scope.username = null;
+        $scope.password = null;
+        $scope.card = false;
+        $scope.cardReg = false;
         $scope.cardSuccess = false;
         $scope.loginModal.hide();
     });
 
     $scope.$on('event:auth-login-failed', function(e, status) {
         $ionicLoading.hide();
-        var error      = "Invalid Username or Password.";
-        $scope.card    = true;
+        var error = "Invalid Username or Password.";
+        $scope.card = true;
         $scope.message = error;
     });
     $scope.$on('event:auth-register-complete', function(e, status) {
         $scope.toggleButton();
-        $scope.cardReg     = false;
-        $scope.card        = false;
+        $scope.cardReg = false;
+        $scope.card = false;
         $scope.cardSuccess = true;
-        $scope.message     = status;
+        $scope.message = status;
     });
     $scope.$on('event:auth-register-failed', function(e, status) {
-        var error      = status;
+        var error = status;
         $scope.cardReg = true;
         $scope.message = error;
     });
@@ -192,15 +185,15 @@ angular.module('starter.controllers', [])
     }
 
 
-    $scope.success   = false;
-    $scope.alertBad  = false;
+    $scope.success = false;
+    $scope.alertBad = false;
     $scope.alertGood = false;
-    $scope.img       = '';
+    //$scope.img = '';
     $scope.report.gps_lat = LocationService.location.latitude;
     $scope.report.gps_lng = LocationService.location.longitude;
-
     $http.get(apiROOT + 'api/v1/categories')
-        .success(function(data) {
+        .success(function(data, status, headers, config) {
+
             var obj = data;
             if (obj.error) {
                 $scope.$broadcast('event:categories-failed', obj.message);
@@ -218,7 +211,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.$on('event:categories-success', function(e, res) {
-        $scope.categories   = res.categories;
+        $scope.categories = res.categories;
         $scope.cat.selected = $scope.categories[0];
         $scope.update();
 
@@ -228,40 +221,27 @@ angular.module('starter.controllers', [])
             template: 'Sending...'
         });
     };
-
     $scope.hide = function() {
         $ionicLoading.hide();
     };
 
     $scope.update = function() {
-        $scope.report.category   = $scope.cat.selected.name;
-        $scope.selectedCatSubs   = $scope.cat.selected.subs;
-        $scope.subs              = $scope.selectedCatSubs;
-        $scope.subsubs           = [];
-        $scope.subsubsub         = [];
-        $scope.Sub.selected      = $scope.selectedCatSubs[0];
+        $scope.report.category = $scope.cat.selected.name;
+        $scope.selectedCatSubs = $scope.cat.selected.subs;
+        $scope.subs = $scope.selectedCatSubs;
+        $scope.Sub.selected = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
         $scope.report.sub_category = $scope.Sub.selected.name;
-        $scope.selectedSubSubs     = $scope.Sub.selected.subs;
-        $scope.report.sub_category = $scope.selectedSubSubs[0];
-        $scope.subsubs             = $scope.selectedSubSubs;
-        $scope.updateSubSub();
+        $scope.selectedSubSubs = $scope.Sub.selected.subs;
+        $scope.subsubs = $scope.selectedSubSubs;
     }
-
-    $scope.updateSubSub = function() {
-         $scope.report.sub_sub_category = $scope.report.sub_category.name;
-    }
-
 
     $scope.prior = function(selected){
        $scope.report.priorities = selected;
     }
-
-
-
 
     $scope.takePhoto = function() {
         var options = {
@@ -275,7 +255,7 @@ angular.module('starter.controllers', [])
 
     $scope.pickPhoto = function() {
 
-        var options = {
+      var options = {
             quality: 50,
             width: 640,
             height: 480,
@@ -302,18 +282,16 @@ angular.module('starter.controllers', [])
         };
 
 
-        }
-
-
+    }
     var onSuccess = function(FILE_URI) {
-        $scope.img         = FILE_URI;
-        $scope.imgSrc      = FILE_URI;
+
+        $scope.img = FILE_URI;
+        $scope.imgSrc = FILE_URI;
         $scope.showMessage = true;
         localStorage.setItem("pic", FILE_URI);
         $scope.$apply();
     };
     var onFail = function(e) {
-
         console.log("On fail " + e);
     }
 
@@ -328,7 +306,7 @@ angular.module('starter.controllers', [])
                     maximumAge: 90000
                 };
                 navigator.geolocation.getCurrentPosition(showPosition, onError, options);
-
+                //navigator.geolocation.getCurrentPosition(showPosition);
 
             } else {
                 $scope.hide();
@@ -358,7 +336,7 @@ angular.module('starter.controllers', [])
         }
 
     }
-    $scope.postAReport = function(FILE_URI) {
+    $scope.postAReport = function(argument) {
         $scope.img = localStorage.getItem("pic");
         if ($scope.img) {
             $scope.show();
@@ -385,7 +363,6 @@ angular.module('starter.controllers', [])
         $scope.alertBad = true;
         $scope.message = "There was an issue sending your report, We'll Send it later for you";
         Report.savedReports.push($scope.report);
-        //console.log(Report.savedReports);
     })
 
 
@@ -516,7 +493,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LogoutCtrl', function($scope, AuthenticationService) {
-
     localStorage.removeItem("key");
     AuthenticationService.logout();
 })
