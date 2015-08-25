@@ -211,7 +211,6 @@ angular.module('starter.services', ['http-auth-interceptor'])
             postReportWithImageCam: function(img, data) {
                 if (localStorage.getItem("key")) {
                     APIKEY = localStorage.getItem("key");
-                    // $http.defaults.headers.common.Authorization = apiKey.toString();
                 }
 
 
@@ -220,7 +219,7 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 options.fileKey = "img";
                 options.chunkedMode = false;
                 var headers = {
-                    'Authorization': APIKEY
+                    'api_key': APIKEY
                 };
                 options.headers = headers;
                 var params = data;

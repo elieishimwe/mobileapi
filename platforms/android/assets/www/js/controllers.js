@@ -185,10 +185,10 @@ angular.module('starter.controllers', [])
     }
 
 
-    $scope.success = false;
-    $scope.alertBad = false;
+    $scope.success   = false;
+    $scope.alertBad  = false;
     $scope.alertGood = false;
-    //$scope.img = '';
+    $scope.img       = '';
     $scope.report.gps_lat = LocationService.location.latitude;
     $scope.report.gps_lng = LocationService.location.longitude;
     $http.get(apiROOT + 'api/v1/categories')
@@ -306,7 +306,7 @@ angular.module('starter.controllers', [])
                     maximumAge: 90000
                 };
                 navigator.geolocation.getCurrentPosition(showPosition, onError, options);
-                //navigator.geolocation.getCurrentPosition(showPosition);
+
 
             } else {
                 $scope.hide();
@@ -336,7 +336,7 @@ angular.module('starter.controllers', [])
         }
 
     }
-    $scope.postAReport = function(argument) {
+    $scope.postAReport = function(FILE_URI) {
         $scope.img = localStorage.getItem("pic");
         if ($scope.img) {
             $scope.show();
@@ -464,7 +464,7 @@ angular.module('starter.controllers', [])
     ).error(
         function(data) {
             alert('There was an error retrieving your reports.');
-            //console.log('MY REPORTS Error', data);
+            console.log('MY REPORTS Error', data);
 
         }
     );
