@@ -219,13 +219,15 @@ angular.module('starter.services', ['http-auth-interceptor'])
                 options.fileKey = "img";
                 options.chunkedMode = false;
                 var headers = {
-                    'api_key': APIKEY
+                    'api_key': APIKEY,
+                    'api_key_new':api_key
+
                 };
                 options.headers = headers;
                 var params = data;
                 options.params = params;
                 var ft = new FileTransfer();
-                ft.upload(myImg, encodeURI(apiROOT + 'reportImage'), onUploadSuccess, onUploadFail, options);
+                ft.upload(myImg, encodeURI(apiROOT + 'api/v1/report'), onUploadSuccess, onUploadFail, options);
 
                 function onUploadSuccess(argument) {
                     var obj = argument.response;

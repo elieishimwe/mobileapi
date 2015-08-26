@@ -211,8 +211,8 @@ angular.module('starter.controllers', [])
     }
 
     $scope.$on('event:categories-success', function(e, res) {
-        $scope.categories = res.categories;
-        $scope.cat.selected = $scope.categories[0];
+        $scope.categories   = res.categories;
+        //$scope.cat.selected = $scope.categories[0];
         $scope.update();
 
     })
@@ -228,16 +228,19 @@ angular.module('starter.controllers', [])
     $scope.update = function() {
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
-        $scope.subs = $scope.selectedCatSubs;
-        $scope.Sub.selected = $scope.selectedCatSubs[0];
+        $scope.subs            = $scope.selectedCatSubs;
+        $scope.Sub.selected    = $scope.selectedCatSubs[0];
         $scope.updateSub();
     }
 
     $scope.updateSub = function() {
-        $scope.report.sub_category = $scope.Sub.selected.name;
-        $scope.selectedSubSubs = $scope.Sub.selected.subs;
-        $scope.subsubs = $scope.selectedSubSubs;
+        $scope.report.sub_category     = $scope.Sub.selected.name;
+        $scope.selectedSubSubs         = $scope.Sub.selected.subs;
+        $scope.subsubs                 = $scope.selectedSubSubs;
+        $scope.report.sub_sub_category = $scope.selectedSubSubs[0];
+
     }
+
 
     $scope.prior = function(selected){
        $scope.report.priorities = selected;
