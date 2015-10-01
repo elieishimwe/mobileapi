@@ -11,39 +11,45 @@
     <ion-content>
     <div class="list">
     	<div class="item item-dark">
-    		 Case: {{selectedReport.ID}}
+    		 Case: {{selectedReport.id}}
 
 
     	</div>
 
 
     	<div class="item item-dark">
-    		 Created: {{selectedReport.submit_date}}
+    		 Created: {{selectedReport.created_at}}
 
     	</div>
 
     	<div class="item item-dark">
-    		 Category: {{selectedReport.prob_category}}
+    		 Category: {{selectedReport.category}}
 
     	</div>
 
     	<div class="item item-dark">
-    		 Sub-Category: {{selectedReport.prob_subcategory}}
+    		 Sub-Category: {{selectedReport.sub_category}}
 
     	</div>
 
         <div class="item item-dark">
-             Sub-Sub-Category: {{selectedReport.prop_sub_sub_category}}
+             Sub-Sub-Category: {{selectedReport.sub_sub_category}}
 
         </div>
 
     	<div class="item item-dark">
-    		 Description: {{selectedReport.prob_exp}}
+    		 Description: {{selectedReport.description}}
 
     	</div>
 
         <div class="item item-dark">
-             Priority: {{selectedReport.prob_priority}}
+
+             Status: {{selectedReport.status}}
+
+        </div>
+
+        <div class="item item-dark">
+             Priority: {{selectedReport.priority}}
 
         </div>
 

@@ -48,29 +48,30 @@
                     </div>
 
                     <select ng-options="category as category.name for category in categories" ng-model="cat.selected" ng-change="update()" required="true">
-                        <option value="?">Select A Category</option>
+                        <option value="" selected>--Please select case category--</option>
                     </select>
                 </label>
             </div>
-            <div class="list list-inset" ng-if="subs">
+            <div class="list list-inset" ng-if="subs.length">
                 <label class="item item-input item-select">
                     <div class="input-label">
                         Sub Category
                     </div>
 
                     <select ng-options="sub as sub.name for sub in subs" ng-model="Sub.selected" ng-change="updateSub()">
-                        <option value="?">Select A Sub Category</option>
+                        <option value="" selected>--Please select case sub category--</option>
                         <option ng-repeat="sub in subs" value="{{sub.name}}">{{sub.name}}</option>
                     </select>
                 </label>
             </div>
-            <div class="list list-inset" ng-if="subsubs">
+            <div class="list list-inset" ng-if="subs.length && subsubs.length">
                 <label class="item item-input item-select">
                     <div class="input-label">
                         Sub Sub Category
                     </div>
 
-                    <select ng-model="report.sub_sub_category" ng-options="sub as sub.name for sub in subsubs"  >
+                    <select ng-model="SubSub.selected" ng-options="sub as sub.name for sub in subsubs"  ng-change="updateSubSub()">
+                         <option value="" selected>--Please select case sub sub category--</option>
                     </select>
                 </label>
             </div>

@@ -75,7 +75,6 @@
 /var/www/ecin/platforms/android/assets/www/templates/login.html \
 /var/www/ecin/platforms/android/assets/www/templates/newproject.html \
 /var/www/ecin/platforms/android/assets/www/templates/map.html \
-/var/www/ecin/platforms/android/assets/www/templates/projectsold.html \
 /var/www/ecin/platforms/android/assets/www/templates/projects.html \
 /var/www/ecin/platforms/android/assets/www/img/white.png \
 /var/www/ecin/platforms/android/assets/www/img/transnet.png \

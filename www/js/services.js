@@ -1,4 +1,4 @@
-var apiROOT = 'http://www.siyaleader.co.za:8080/ecin2edin/console/app_backend/port_backend/public/'
+var apiROOT = 'http://41.216.130.6:8080/siyaleader-dbnports-mobileApp-api/port_backend/public/';
 
 var APIKEY;
 var api_key;
@@ -32,7 +32,6 @@ angular.module('starter.services', ['http-auth-interceptor'])
                     ignoreAuthModule: true
                 })
                 .success(function(data, status, headers, config) {
-                    //var str = data.slice(1);
                     var obj = data;
                     if (obj.error) {
                         $rootScope.$broadcast('event:auth-login-failed', status);

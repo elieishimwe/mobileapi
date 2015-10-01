@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
     };
     $scope.cat = {};
     $scope.Sub = {};
+    $scope.SubSub = {};
     $scope.subs = [];
     $scope.subsubs = [];
     $scope.report = {};
@@ -213,7 +214,8 @@ angular.module('starter.controllers', [])
     $scope.$on('event:categories-success', function(e, res) {
         $scope.categories   = res.categories;
         //$scope.cat.selected = $scope.categories[0];
-        $scope.update();
+        console.log($scope.cat.selected);
+        //$scope.update();
 
     })
     $scope.show = function() {
@@ -226,20 +228,28 @@ angular.module('starter.controllers', [])
     };
 
     $scope.update = function() {
+        $scope.Sub = {};
+        $scope.SubSub = {};
         $scope.report.category = $scope.cat.selected.name;
         $scope.selectedCatSubs = $scope.cat.selected.subs;
         $scope.subs            = $scope.selectedCatSubs;
-        $scope.Sub.selected    = $scope.selectedCatSubs[0];
-        $scope.updateSub();
+        //$scope.Sub.selected    = $scope.selectedCatSubs[0];
+        //$scope.updateSub();
     }
 
     $scope.updateSub = function() {
-        $scope.report.sub_category     = $scope.Sub.selected.name;
-        $scope.selectedSubSubs         = $scope.Sub.selected.subs;
-        $scope.subsubs                 = $scope.selectedSubSubs;
-        $scope.report.sub_sub_category = $scope.selectedSubSubs[0];
+        $scope.report.sub_category = $scope.Sub.selected.name;
+        $scope.selectedSubSubs     = $scope.Sub.selected.subs;
+        $scope.subsubs             = $scope.selectedSubSubs;
+        //$scope.SubSub.selected     = $scope.selectedSubSubs[0];
 
     }
+
+    $scope.updateSubSub = function() {
+
+        $scope.report.sub_sub_category  =  $scope.SubSub.selected.name;
+    }
+
 
 
     $scope.prior = function(selected){
